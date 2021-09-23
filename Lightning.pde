@@ -1,33 +1,33 @@
 PImage img;
-int startX = 0;
+int startX = 100;
 int startY = 150;
 int endX = 0;
-int endY = 150;
+int endY = 0;
 
 void setup()
 {
   size(300,300);
   img = loadImage("flash.png");
+  drawFlash(startX - 40, startY);
 }
 
 void draw()
 {
-  drawFlash(0, 0);
+  stroke(0);
+  while(startX >= 0){
+    endX = startX - (int)(Math.random() * 10) + 1;
+    endY = startY + ((int)(Math.random() * 6) - 2);
+    line(startX, startY+20, endX, endY+20);
+    line(startX+10, startY-10, endX+10, endY-10);
+    line(startX+10, startY+50, endX+10, endY+50);
+    startX = endX;
+    startY = endY;
+  }
 }
 
 void drawFlash(int x, int y)
 {
   image(img, x, y, width/3, height/3);
-  
-  stroke(0);
-  while(endX < 150){
-    endX = startX + (int)(Math.random() * 10);
-    endY = startY + ((int)(Math.random() * 19) - 9);
-    startX = endX;
-    startY = endY;
-    print("here");
-    line(startX, startY, endX, endY);
-  }
 }
   
 //void flash(int x, int y, float sx, float sy)
