@@ -25,7 +25,7 @@ void draw() {
     endY = startY + ((int)(Math.random() * 6) - 2);
     
     strokeWeight(2);
-    stroke(0);
+    stroke(255, 204, 0);
     line(startX+40, startY, endX+35, endY);
     line(startX+20, startY+20, endX+15, endY+20);
     line(startX+40, startY+40, endX+35, endY+40);
@@ -57,4 +57,7 @@ void drawBackground(){
 
 void mousePressed(){
   flashX += 40;
+  if (flashX >= 300) {
+    flashX = 20;
+  }
 }
