@@ -7,62 +7,54 @@ int endY = 0;
 int flashX = startX-35;
 int flashY = startY;
 
-void setup()
-{
+void setup() {
   size(300, 300);
   img = loadImage("flash.png");
-  drawBackground();
 }
 
-void draw()
-{
-  drawFlash(flashX, flashY);
+void draw() {
+  drawBackground();
+  drawRoad();
+  
+  startX = flashX;
+  startY = flashY;
+  
+  delay(250);
   while(startX >= 0){
     endX = startX - (int)(Math.random() * 10) + 1;
     endY = startY + ((int)(Math.random() * 6) - 2);
     
-    stroke(255, 255, 15);
-    drawLine(startX, startY, endX, endY);
+    strokeWeight(2);
+    stroke(0);
+    line(startX+40, startY, endX+35, endY);
+    line(startX+20, startY+20, endX+15, endY+20);
+    line(startX+40, startY+40, endX+35, endY+40);
+    line(startX+10, startY+60, endX+5, endY+60);
+    line(startX, startY+90, endX, endY+90);
     
     startX = endX;
     startY = endY;
   }
+  drawFlash(flashX, flashY);
 }
 
-void drawLine(int startX, int startY, int endX, int endY)
-{
-  strokeWeight(3);
-  for (int y = 20; y < 95; y += 20){
-    line(startX, startY+y, endX, endY+y);
-  }
+void drawRoad() {
+  stroke(0);
+  rect(0,250,300,50);
 }
 
-void drawFlash(int x, int y)
-{
+void drawFlash(int x, int y) {
   image(img, x, y, width/3, height/3);
 }
 
-void drawBackground()
-{
-  for (int c = 0; c <= 300; c+=1){
-    strokeWeight(40);
-    if (Math.random() < .8){
-      stroke(c-150, c-40, 255, 60);  
-    }
-    else {
-      stroke(255, 255, 255);
-    }
-    
+void drawBackground(){
+  for (int c = 0; c <= 300; c++){
+    strokeWeight(5);
+    stroke(c, c, 255, 30);
     line(0, c, 300, c);
-    
-    //line(0, c, 300, c);
-    }
-    //if (Math.random() < .5){
-    //  stroke(52, c, 235);
-    //  line(0, c, 300, c);
-    //}
-    //else {
-    //  stroke(200, c, 255);
-    //  line(0, c, 300, c);
-    //}
+  }
+}
+
+void mousePressed(){
+  flashX += 40;
 }
