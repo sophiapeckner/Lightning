@@ -19,7 +19,7 @@ void draw() {
   startX = flashX;
   startY = flashY;
   
-  delay(250);
+  //delay(250);
   while(startX >= 0){
     endX = startX - (int)(Math.random() * 10) + 1;
     endY = startY + ((int)(Math.random() * 6) - 2);
