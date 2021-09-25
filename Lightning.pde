@@ -11,6 +11,7 @@ void setup()
 {
   size(300, 300);
   img = loadImage("flash.png");
+  drawBackground();
 }
 
 void draw()
@@ -30,15 +31,38 @@ void draw()
 
 void drawLine(int startX, int startY, int endX, int endY)
 {
+  strokeWeight(3);
   for (int y = 20; y < 95; y += 20){
     line(startX, startY+y, endX, endY+y);
-    //line(startX+5, startY+35, endX+5, endY+35);
-    //line(startX-10, startY+50, endX-10, endY+50);
-    //line(startX+5, startY+75, endX+5, endY+75);
   }
 }
 
 void drawFlash(int x, int y)
 {
   image(img, x, y, width/3, height/3);
+}
+
+void drawBackground()
+{
+  for (int c = 0; c <= 300; c+=1){
+    strokeWeight(40);
+    if (Math.random() < .8){
+      stroke(c-150, c-40, 255, 60);  
+    }
+    else {
+      stroke(255, 255, 255);
+    }
+    
+    line(0, c, 300, c);
+    
+    //line(0, c, 300, c);
+    }
+    //if (Math.random() < .5){
+    //  stroke(52, c, 235);
+    //  line(0, c, 300, c);
+    //}
+    //else {
+    //  stroke(200, c, 255);
+    //  line(0, c, 300, c);
+    //}
 }
